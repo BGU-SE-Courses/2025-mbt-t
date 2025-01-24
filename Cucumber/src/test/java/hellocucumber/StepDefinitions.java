@@ -5,12 +5,15 @@ import io.cucumber.java.en.*;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class StepDefinitions {
 
@@ -131,7 +134,6 @@ public class StepDefinitions {
         Assertions.assertTrue(Math.abs(actualDiscount - expectedDiscount) <= epsilon,
                 "Expected a discount of " + expectedDiscount + " but got " + actualDiscount
                         + ". Before: " + totalCartCostBefore + ", After: " + totalCartCostAfter);
-
     }
 
     private double parsePrice(String priceBeforeString) // Remove currency symbols
@@ -166,13 +168,28 @@ public class StepDefinitions {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", discountsElement);
         discountsElement.click();
     }
-    @And("There is exist coupon")
-    public void ThereIsExistCoupon() {
-        driver.findElement(By.xpath("//td[2]")).click();
+    @And("There is exist coupon that we want to cancel with {string}")
+    public void ThereIsExistCouponThatWeWantToCancelWith(String id) {
+        //In case there is more than one coupon
+        try {
+            int int_id = Integer.parseInt(id);
+            String dynamicXPath = "//div[2]/table[1]/tbody[1]/tr[" + int_id + "]/td[3]";
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Adjust the wait time as needed
+            WebElement elementSort = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//th[2]/span[1]/a[2]/i[1]")));
+            elementSort.click();
+            driver.findElement(By.xpath(dynamicXPath)).click();
+            //If failed there is one coupon than enter it
+        } catch (TimeoutException e) {
+            driver.findElement(By.xpath("//td[2]")).click();
+        }
     }
-//    @When("Admin change status of the coupon to canceled")
-//    public void AdminChangeStatusOfTheCouponToCanceled() {
-//        driver.findElement(By.xpath("//*[@id='active_off']")).click();
-//    }
+    @When("Admin change status of the coupon to canceled")
+    public void AdminChangeStatusOfTheCouponToCanceled() {
+        driver.findElement(By.xpath("//*[@id='active_off']")).click();
+    }
+    @Then("the coupon is disabled")
+    public void TheCouponIsDisabled() {
+        WebElement activeOffButton = driver.findElement(By.id("active_on"));
+        Assertions.assertFalse(activeOffButton.isSelected());
+    }
 }
-//Admin navigates to the catalog-discounts page
