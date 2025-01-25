@@ -36,7 +36,9 @@ function AdminLogin(session, e){
 
 function NavigateToCatalogDiscounts(session){
     sync({request:Event("Start(NavigateToCatalogDiscounts)")})
+    session.waitForVisibility(xpaths.adminNavigatesToDiscount.catalogButton, 5000);
     session.click(xpaths.adminNavigatesToDiscount.catalogButton)
+    session.waitForVisibility(xpaths.adminNavigatesToDiscount.discountButton, 5000);
     session.click(xpaths.adminNavigatesToDiscount.discountButton)
 }
 function UserInputDisabledCoupon(session){
