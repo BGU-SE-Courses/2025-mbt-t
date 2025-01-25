@@ -5,7 +5,7 @@
 const URLprestashop = "http://localhost:8080"
 const URLprestashopAdmin = "http://localhost:8080/admina"
 const couponCode = "BlackNovember"
-const couponID = 1
+const couponID = "1"
 const expectedDiscount = 20
 
 
@@ -43,7 +43,7 @@ const xpaths = {
     loginButton: "//button[1]/span[1]",
   },
   adminNavigatesToDiscount: {
-    catalogButton: "//*[@id='subtab-AdminCatalog']/a",
+    catalogButton: "//html/body/nav/div/ul/li[4]/a",
     discountButton: "//*[@id='subtab-AdminParentCartRules']/a[1]"
   },
   adminFindCoupon: {

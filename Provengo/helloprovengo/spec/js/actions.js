@@ -11,7 +11,6 @@ function CustomerLogin(session, e){
 
 function AddProductToCart(session){
     sync({request: Event("Start(AddProductToCart)") });
-    //session.scrollBy(0, 500);
     session.click(xpaths.userProductSelection.productHummingbirdPrintedSweater)
     session.click(xpaths.userProductSelection.productAddButton)
     session.click(xpaths.userProductSelection.proceedToCheckoutButton)
@@ -31,7 +30,7 @@ function ApplyCoupon(session,e) {
 function AdminLogin(session, e){
     sync({request:Event("Start(AdminLogin)")})
     session.writeText(xpaths.adminSignInWindow.adminInput, e.email)
-    session.writeText(xpaths.userSignInWindow.passwordInput, e.password)
+    session.writeText(xpaths.adminSignInWindow.passwordInput, e.password)
     session.click(xpaths.adminSignInWindow.loginButton)
 }
 
@@ -45,10 +44,10 @@ function UserInputDisabledCoupon(session){
     session.waitForVisibility(xpaths.userCouponError.disabledCoupon)
 }
 
-function SelectCouponToCancel(session, id){
+function SelectCouponToCancel(session, e){
     sync({request:Event("Start(SelectCouponToCancel)")})
     try {
-         const dynamicXPath = xpaths.adminFindCoupon.part1CouponID + id + xpaths.adminFindCoupon.part2CouponID;
+         const dynamicXPath = xpaths.adminFindCoupon.part1CouponID + e.id + xpaths.adminFindCoupon.part2CouponID;
          session.click(xpaths.adminFindCoupon.sortButton);
          session.click(dynamicXPath);
      }
