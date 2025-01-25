@@ -2,8 +2,8 @@
  *  This is a good place to put common test data, project-wide constants, etc.
  */
 
-const URLprestashop = "localhost:8080"
-const URLprestashopAdmin = "localhost:8080/admina"
+const URLprestashop = "http://localhost:8080"
+const URLprestashopAdmin = "http://localhost:8080/admina"
 const couponCode = "BlackNovember"
 const couponID = 1
 const expectedDiscount = 20
