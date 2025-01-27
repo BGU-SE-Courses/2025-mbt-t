@@ -1,4 +1,4 @@
-Feature: A set of scenarios for testing the "example" module
+Feature: A set of scenarios for testing the Presta Shop coupon application by user and management by admin.
 
   @Customer
   Scenario Outline: Customer uses a coupon that lowers the cost in the cart.
@@ -13,9 +13,7 @@ Feature: A set of scenarios for testing the "example" module
 
       | rudikkukuliev123@gmail.com        | acegh0211Or  | SoftwareQuality | 0.2            |
 
-Feature: A set of scenarios for testing the "example" module
-
-  @Customer
+  @Admin
   Scenario Outline: The admin cancels the coupon.
     Given Admin is exist in the system with "<Email>" and "<Password>"
     And Admin navigates to the catalog-discounts page
