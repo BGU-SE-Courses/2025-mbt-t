@@ -146,7 +146,7 @@ public class StepDefinitions {
     //===============================================================================================================//
 
 
-    @Given("Admin is exist in the system with {string} and {string}")
+    @Given("Admin is logged in the system with {string} and {string}")
     public void AdminIsExistInTheSystemWithAnd(String email, String password) {
         System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
         this.driver = new ChromeDriver();
@@ -158,7 +158,7 @@ public class StepDefinitions {
         driver.findElement(By.xpath("//button[1]/span[1]")).click();
     }
 
-    @And("Admin navigates to the catalog-discounts page")
+    @And("Admin is on the Cart Rules page within Catalog-Discounts")
     public void AdminNavigatesToTheCatalogDiscountsPage() {
         Duration val = Duration.ofSeconds(10);
         WebDriverWait wait = new WebDriverWait(driver, val);  // Wait for up to 10 seconds
@@ -168,7 +168,7 @@ public class StepDefinitions {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", discountsElement);
         discountsElement.click();
     }
-    @And("There is exist coupon that we want to cancel with {string}")
+    @And("There is a coupon that we want to cancel with {string}")
     public void ThereIsExistCouponThatWeWantToCancelWith(String id) {
         //In case there is more than one coupon
         try {

@@ -14,14 +14,14 @@ Feature: A set of scenarios for testing the Presta Shop coupon application by us
       | rudikkukuliev123@gmail.com        | acegh0211Or  | SoftwareQuality | 0.2            |
 
   @Admin
-  Scenario Outline: The admin cancels the coupon.
-    Given Admin is exist in the system with "<Email>" and "<Password>"
-    And Admin navigates to the catalog-discounts page
-    And There is exist coupon that we want to cancel with "<id>"
+  Scenario Outline: Admin cancels the coupon.
+    Given Admin is logged in the system with "<Email>" and "<Password>"
+    And Admin is on the Cart Rules page within Catalog-Discounts
+    And There is a coupon that we want to cancel with "<id>"
     When Admin change status of the coupon to canceled
     Then the coupon is disabled
 
     Examples:
-      | Email                             | Password     | id|
+      | Email                      | Password         | id   |
 
       | demo@prestashop.com        | prestashop_demo  | 1    |

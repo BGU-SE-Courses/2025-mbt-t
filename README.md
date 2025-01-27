@@ -2,31 +2,41 @@
 This is a repository for the system-testing assignment of the Software Quality Engineering course at the [Ben-Gurion University](https://in.bgu.ac.il/), Israel.
 
 ## Assignment Description
-In this assignment, we tested an open-source software called [$$*TODO* software name$$](https://address-of-the-project.com).
+In this assignment, we tested an open-source software called [PrestaShop](https://demo.prestashop.com/#/en/front).
 
-$$*TODO* Add some general description about the software$$
+PrestaShop is an open-source e-commerce platform designed for building and managing online stores. It offers a user-friendly interface for managing products, customers, orders, and payments, making it accessible for diverse users.
 
 ## Installation
-$$*TODO* Write instructions on how to install the software and prepare the testing environment$$
+
+1. Download PrestaShop.
+2. Set up a local server environment.
+3. Configure local database - user data and coupon data.
+4. Install any Java IDE + JDK.
+5. Configure maven dependencies in pom.xml file - Selenium and Cucumber.
+6. Download the correct version chromedriver according to your google chrome version and place it in the Selenium directory.
 
 ## What we tested
-$$*TODO* Add a description of the module and the user stories that you chose to test.
-For example, in the case of the Moodle example, you can write something like this:
 
-We tested the quiz module that allows for creating and taking quizzes. We chose to test the following user stories: 
+We tested the coupon module that allows for users to use coupons and admins to manage coupons. We chose to test the following user stories: 
 
-*User story:* A teacher adds a new quiz to the course with two yes/no questions
+*User story:* Customer uses a coupon that lowers the cost in the cart.
 
-*Preconditions:* There is a course with a teacher
+*Preconditions:* 
 
-*Expected outcome:* The quiz is added to the course.
+1. The customer is logged in.
+2. The customer has a product in the cart.
+3. The customer is on Payment Page with Promo code open.
 
-*User story:* A students attempts a quiz and answers correctly.
+*Expected outcome:* The coupon is applied and the cart total cost is lowered.
 
-*Preconditions:* There is a course with a quiz with two yes/no questions and the quiz grade is calculated automatically and the grade is visible to the students upon submission.
+*User story:* Admin cancels the coupon.
 
-*Expected outcome:* The student receives 100.
-$$
+*Preconditions:* 
+1. The admin is logged in the system .
+2. The admin is on the Cart Rules page within Catalog-Discounts
+3. There is a coupon that we want to cancel.
+
+*Expected outcome:* The coupon is disabled
 
 ## How we tested
 We used two different testing methods:
@@ -34,19 +44,3 @@ We used two different testing methods:
 2. [Provengo](https://provengo.tech/), a story-based testing framework.
 
 Each of the testing methods is elaborated in its own directory. 
-
-## Results
-Update all README.md files (except for d-e, see Section 1). Specifically, replace all $$*TODO*…$$ according to the instructions inside the $$.
-
-## Detected Bugs
-We detected the following bugs:
-
-1. Bug 1: 
-   1. General description: ...
-   2. Steps to reproduce: ...
-   3. Expected result: ...
-   4. Actual result: ...
-   5. Link to the bug report: (you are encouraged to report the bug to the developers of the software)
-2. Bug 2: ...
-
-$$*TODO* if you did not detect the bug, you should delete this section$$  
