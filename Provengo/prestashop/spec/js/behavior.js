@@ -1,5 +1,6 @@
 
 /* @provengo summon selenium */
+/* @provengo summon ctrl */
 
 // this bthread takes care of the first use case, when a customer tries to apply a coupon to lower their cart total cost.
 bthread("CustomerLoginAndAddProductToCartAndCustomerAppliesCoupon", function () {
@@ -11,6 +12,7 @@ bthread("CustomerLoginAndAddProductToCartAndCustomerAppliesCoupon", function () 
   sync({request: Event("End(OpenPromoCodeWindow)")}, OpenPromoCodeWindow(s));
   interrupt(Event("Start(ChangeCouponStatusToCanceled)"), function (){
     sync({request:Event("End(ApplyCoupon)")}, ApplyCoupon(s, {code: couponCode}));
+    Ctrl.doSleep(5000);
   })
 });
 
@@ -24,6 +26,7 @@ bthread("AdminLoginAndCancelCoupon", function () {
   sync({request: Event("End(NavigateToCatalogDiscounts)")}, NavigateToCatalogDiscounts(s2));
   sync({request: Event("End(SelectCouponToCancel)")}, SelectCouponToCancel(s2,{id: couponID}));
   sync({request: Event("End(ChangeCouponStatusToCanceled)")}, ChangeCouponStatusToCanceled(s2));
+  Ctrl.doSleep(5000);
 });
 
 

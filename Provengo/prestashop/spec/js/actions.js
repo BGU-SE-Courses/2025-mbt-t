@@ -44,6 +44,7 @@ function NavigateToCatalogDiscounts(session){
 function UserInputDisabledCoupon(session){
     sync({request:Event("Start(UserInputDisabledCoupon)")})
     session.waitForVisibility(xpaths.userCouponError.disabledCoupon)
+    
 }
 
 function SelectCouponToCancel(session, e){
