@@ -5,7 +5,7 @@
 const URLprestashop = "http://localhost:8080"
 const URLprestashopAdmin = "http://localhost:8080/admina"
 const couponCode = "BlackNovember"
-const couponID = "2"
+const couponID = "1"
 const expectedDiscount = 20
 
 

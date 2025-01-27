@@ -4,15 +4,15 @@
  * List of events "of interest" that we want test suites to cover.
  */
 const GOALS = [
-    any(/Howdy/),
-    any(/Mars/),
-    Ctrl.markEvent("Classic!")
+    Event("End(ApplyCoupon)"), 
+    Event("End(ChangeCouponStatusToCanceled)") 
 ];
 
 const makeGoals = function(){
-    return [ [ any(/Howdy/), any(/Venus/) ],
-             [ any(/Mars/) ],
-             [ Ctrl.markEvent("Classic!") ] ];
+    return [        
+    [ Ctrl.markEvent("End(ApplyCoupon)") ], // Add new goal
+    [ Ctrl.markEvent("End(ChangeCouponStatusToCanceled)") ] // Add new goal ];
+    ]
 }
 
 /**

@@ -1,7 +1,7 @@
 
 /* @provengo summon selenium */
 
-
+// this bthread takes care of the first use case, when a customer tries to apply a coupon to lower their cart total cost.
 bthread("CustomerLoginAndAddProductToCartAndCustomerAppliesCoupon", function () {
   let s = new SeleniumSession("customerSession")
       s.start(URLprestashop);
@@ -15,7 +15,7 @@ bthread("CustomerLoginAndAddProductToCartAndCustomerAppliesCoupon", function () 
 });
 
 
-
+// this bthread takes care of the second use case, when an admin tries to delete a coupon from the shop.
 bthread("AdminLoginAndCancelCoupon", function () {
   let s2 = new SeleniumSession("adminSession")
       s2.start(URLprestashopAdmin);
@@ -27,7 +27,7 @@ bthread("AdminLoginAndCancelCoupon", function () {
 });
 
 
-
+// the following 2 bthreads are taking care of an event in which a customer tries to apply a disabled coupon.
 bthread("VerifyCustomerDontApplyDisabledCoupon", function() {
 
   sync({waitFor:Event("Start(ChangeCouponStatusToCanceled)")});
